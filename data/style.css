@@ -56,11 +56,10 @@ nav a {
 
 nav a.active:before {
     position: absolute;
-    top: -21px;
-    left: 49.3px;
-    font-size: 20px;
-    content: "▲";
-    color: white;
+    top: -20px;
+    left: 45px;
+    content: url("/data/triangle.svg");
+    z-index: -1;
 }
 
 
