@@ -1,0 +1,54 @@
+[
+    {
+        "image": {
+            "thumbnail":   "Brad_Huchteman_-_Stone_Mountain.jpg",
+            "display":     "Brad_Huchteman_-_Stone_Mountain.jpg",
+            "full":        "Brad_Huchteman_-_Stone_Mountain.jpg"
+        },
+        "details": {
+            "author":      "Brad Huchteman",
+            "title":       "Stone Mountain",
+            "description": "Chasing light at Stone Mountain Park",
+            "url":         "https://unsplash.com/photos/O93THGX6dBw"
+        }
+    },
+    {
+        "image": {
+            "thumbnail":   "gcenter-2021.jpg",
+            "display":     "gcenter-2021.jpg",
+            "full":        "https://chandra.si.edu/photo/2021/gcenter/gcenter.tif"
+        },
+        "details": {
+            "author":      "Q. Daniel Wang",
+            "title":       "Chandra large-scale mapping of the Galactic center: Probing high-energy structures around the central molecular zone",
+            "description": "This panorama of the Galactic Center builds on previous surveys from Chandra and other telescopes. This latest version expands Chandra's high-energy view farther above and below the plane of the galaxy — that is, the disk where most of the galaxy's stars reside — than previous imaging campaigns. In the image, X-rays from Chandra are orange, green, and purple, showing different X-ray energies, and the radio data from MeerKAT are gray.",
+            "url":         "https://arxiv.org/abs/2010.02932"
+        }
+    },    
+    {
+        "image": {
+            "thumbnail":   "Jakkree_Thampitakkul_-_Farmer.jpg",
+            "display":     "Jakkree_Thampitakkul_-_Farmer.jpg",
+            "full":        "Jakkree_Thampitakkul_-_Farmer.jpg"
+        },
+        "details": {
+            "author":      "Jakkree Thampitakkul",
+            "title":       "Farmer went to survey the gold fields ready for harvest.",
+            "description": "Farmer went to survey the gold fields ready for harvest. Mu cang chai Vietnam.",
+            "url":         "https://500px.com/photo/102769489/farmer-went-to-survey-the-gold-fields-ready-for-harvest.-by-jakkree-thampitakkul"
+        }
+    },    
+    {
+        "image": {
+            "thumbnail":   "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&h=100&q=80",
+            "display":     "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+            "full":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop"
+        },
+        "details": {
+            "author":      "Rodrigo Ramos",
+            "title":       "Terceira, Portugal",
+            "description": "",
+            "url":         "https://unsplash.com/photos/DFuwPN-EuxE"
+        }
+    }
+]
