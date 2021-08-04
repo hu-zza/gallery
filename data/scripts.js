@@ -1,5 +1,5 @@
 let request = new XMLHttpRequest();
-request.open("GET", "/data/index.json");
+request.open("GET", "https://hu-zza.github.io/gallery/data/index.json");
 request.responseType = "json";
 request.send();
 
@@ -71,7 +71,7 @@ function getFullResolutionLink(index) {
 
 
 function completeLink(rawUrl) {
-    return rawUrl.startsWith("http://") || rawUrl.startsWith("https://") ? rawUrl : `/data/pictures/${rawUrl}`;
+    return rawUrl.startsWith("http://") || rawUrl.startsWith("https://") ? rawUrl : `https://hu-zza.github.io/gallery/data/pictures/${rawUrl}`;
 }
 
 
