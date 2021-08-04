@@ -196,7 +196,7 @@ div.details h1 {
 }
 
 
-div.details p {
+div.details p, div.modal.details div > p  {
     font-family: "Dosis", sans-serif;
     font-size: 3vh;
     line-height: 4vh;
