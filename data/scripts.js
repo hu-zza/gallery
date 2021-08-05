@@ -102,8 +102,8 @@ function refreshTextContainers() {
     $("div.details h1").text(`${current.details.author}  –  ${current.details.title}`);
     $("div.details h1").attr("title", `${current.details.author}  –  ${current.details.title}`);
     $("div.details p").text(current.details.description);
-    $("div.details a").text(current.details.url);    
-    $("div.details a").attr("href", current.details.url);    
+    $("div.details a").text(current.details.url);
+    $("div.details a").attr("href", current.details.url);
 }
 
 
@@ -137,12 +137,14 @@ function fullscreenImage() {
     scrollToTop();
     $("body").addClass("locked");
     $("div.modal.fullscreen").removeClass("hidden");
+    document.documentElement.requestFullscreen();
 }
 
 
 function exitFullscreenImage() {
     $("div.modal.fullscreen").addClass("hidden");
     $("body").removeClass("locked");
+    document.exitFullscreen();
 }
 
 
