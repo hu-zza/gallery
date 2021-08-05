@@ -149,7 +149,7 @@ function exitFullscreenImage() {
 function toggleDetails() {
     $("body").toggleClass("locked");
     $("div.modal.details").toggleClass("hidden");
-    $("div.detailsButton").toggleClass("close");
+    $("button.details").toggleClass("close");
 }
 
 
@@ -203,4 +203,4 @@ $("button#fullscreen").click(fullscreenImage);
 $("button#next").click(nextImage);
 $("div.modal.fullscreen").click(exitFullscreenImage);
 
-$("div.detailsButton").click(toggleDetails);
+$("button.details").click(toggleDetails);
