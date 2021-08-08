@@ -25,7 +25,7 @@ main {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
-    background-image: url("https://hu-zza.github.io/gallery/data/placeholder.png");
+    background-image: url("https://hu-zza.github.io/gallery/data/img/placeholder.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -57,7 +57,7 @@ nav a.active:before {
     position: absolute;
     top: -20px;
     left: 45px;
-    content: url("https://hu-zza.github.io/gallery/data/triangle.svg");
+    content: url("https://hu-zza.github.io/gallery/data/img/triangle.svg");
     z-index: -1;
 }
 
@@ -77,7 +77,7 @@ nav a div {
     width: 100px;
     height: 100px;
     margin: 7px;
-    background-image: url("https://hu-zza.github.io/gallery/data/thumbnail_placeholder.png");
+    background-image: url("https://hu-zza.github.io/gallery/data/img/placeholder.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -90,7 +90,6 @@ nav a div {
 
 
 main.disabled {
-    background-size: initial;
     animation: opacityPulse 3s infinite;
 }
 
@@ -117,6 +116,7 @@ button {
     padding: 2vh;
     background: rgba(0, 0, 0, 0);
     border: 0;
+    cursor: pointer;
 }
 
 
@@ -170,6 +170,11 @@ div.modal {
 
 div.modal.hidden {
     display: none;
+}
+
+
+div.modal.fullscreen {
+    cursor: zoom-out;
 }
 
 
@@ -265,7 +270,7 @@ div.details a {
         height: 10vw;
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.7);
-        background-image: url("https://hu-zza.github.io/gallery/data/i.svg");
+        background-image: url("https://hu-zza.github.io/gallery/data/img/i.svg");
         background-position: center;
         background-size: cover;
         transition: filter 0.5s, background-color 0.5s;
@@ -283,12 +288,9 @@ div.details a {
         right: 2vw;
         width: 10vw;
         height: 10vw;
-        background-image: url("https://hu-zza.github.io/gallery/data/x.svg");
+        background-image: url("https://hu-zza.github.io/gallery/data/img/x.svg");
     }
 
-    div.detailsButton.close:after {
-        content: "×";
-    }
 
     div.modal.details div {
         box-sizing: border-box;

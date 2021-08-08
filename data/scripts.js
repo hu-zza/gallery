@@ -47,8 +47,8 @@ function getThumbnailLink(index) {
     let current = imageCatalog[index];
 
     let rawLink = current.image.thumbnail != "" ?
-                    current.image.thumbnail :
-                    getDisplayLink(index);
+        current.image.thumbnail :
+        getDisplayLink(index);
 
     return completeLink(rawLink);
 }
@@ -58,8 +58,8 @@ function getDisplayLink(index) {
     let current = imageCatalog[index];
 
     let rawLink = current.image.display != "" ?
-                    current.image.display :
-                    getFullResolutionLink(index);
+        current.image.display :
+        getFullResolutionLink(index);
 
     return completeLink(rawLink);
 }
@@ -126,6 +126,15 @@ function keyDownHandler(event) {
 }
 
 
+function syncFullscreen() {
+    if (document.fullscreenElement === null) {
+        exitFullscreenImage();
+    } else {
+        fullscreenImage();
+    }
+}
+
+
 function setBackgroundColor() {
     let color = $("input#background").val();
     $("body").css("background", color);
@@ -137,14 +146,18 @@ function fullscreenImage() {
     scrollToTop();
     $("body").addClass("locked");
     $("div.modal.fullscreen").removeClass("hidden");
-    document.documentElement.requestFullscreen();
+    if (document.fullscreenElement === null) {
+        document.documentElement.requestFullscreen();
+    }
 }
 
 
 function exitFullscreenImage() {
     $("div.modal.fullscreen").addClass("hidden");
     $("body").removeClass("locked");
-    document.exitFullscreen();
+    if (document.fullscreenElement !== null) {
+        document.exitFullscreen();
+    }
 }
 
 
@@ -199,6 +212,8 @@ function setIndex(index) {
 
 $("input#background").change(setBackgroundColor);
 document.addEventListener('keydown', keyDownHandler);
+document.addEventListener('fullscreenchange', syncFullscreen);
+
 
 $("button#previous").click(previousImage);
 $("button#fullscreen").click(fullscreenImage);
