@@ -210,9 +210,7 @@ function addToImageIndex(value) {
 
 function setImageIndex(index) {
     if (isFinite(index)) {
-        let maxIndex = imageCatalog.length - 1;
-
-        index %= maxIndex;
+        index %= imageCatalog.length;
               
         imageIndex = 0 <= index ? index : imageCatalog.length + index;    
     } else {
