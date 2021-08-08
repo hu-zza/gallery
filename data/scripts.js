@@ -113,6 +113,11 @@ function updateActiveFlagOfThumbnails() {
 }
 
 
+function blurClickTarget(event) {
+    event.target.blur();
+}
+
+
 function keyDownHandler(event) {
     if (event.key === "ArrowLeft") {
         previousImage();
@@ -132,13 +137,6 @@ function syncFullscreen() {
     } else {
         fullscreenImage();
     }
-}
-
-
-function setBackgroundColor() {
-    let color = $("input#background").val();
-    $("body").css("background", color);
-    $("div.modal.fullscreen").css("background", color);
 }
 
 
@@ -210,14 +208,23 @@ function setIndex(index) {
 }
 
 
-$("input#background").change(setBackgroundColor);
+function setBackgroundColor() {
+    let color = $("input#background").val();
+    $("body").css("background", color);
+    $("div.modal.fullscreen").css("background", color);
+}
+
+
+document.addEventListener('click', blurClickTarget);
 document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('fullscreenchange', syncFullscreen);
 
+$("input#background").change(setBackgroundColor);
 
 $("button#previous").click(previousImage);
 $("button#fullscreen").click(fullscreenImage);
 $("button#next").click(nextImage);
+
 $("div.modal.fullscreen").click(exitFullscreenImage);
 
 $("button.details").click(toggleDetails);

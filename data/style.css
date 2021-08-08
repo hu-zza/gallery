@@ -1,3 +1,23 @@
+/*
+@font-face {
+    font-family: "Bodoni Moda";
+    src: url("");
+}
+
+
+@font-face {
+    font-family: "Dosis";
+    src: url();
+}
+
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url();
+}
+*/
+
+
 body {
     display: flex;
     flex-flow: column nowrap;
@@ -13,6 +33,7 @@ body {
 body.locked {
     overflow-y: hidden;
 }
+
 
 h2.noscript {
     background: silver;
@@ -193,13 +214,13 @@ main div.details > *, div.modal.details div > * {
 
 
 div.details h1 {
-    font-family: "Bodoni Moda", serif;
+    font-family: "Bodoni Moda", Palatino, Times, serif;
     font-size: 4vh;
 }
 
 
 div.details p, div.modal.details div > p {
-    font-family: "Dosis", sans-serif;
+    font-family: "Dosis", "Arial Narrow", sans-serif;
     font-size: 3vh;
     line-height: 4vh;
     white-space: inherit;
@@ -213,6 +234,12 @@ div.details a {
     position: absolute;
     font-family: "JetBrains Mono", monospace;
     font-size: 2.5vh;
+    text-decoration: none;
+}
+
+
+div.details a:hover {
+    text-decoration: underline;
 }
 
 
