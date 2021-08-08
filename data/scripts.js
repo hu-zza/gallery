@@ -24,7 +24,7 @@ function tryToFetchImageIndex() {
     let hashIndex = location.href.lastIndexOf("#");
 
     if (-1 < hashIndex) {
-        imageIndex = parseInt(location.href.substr(hashIndex + 1));
+        setImageIndex(parseInt(location.href.substr(hashIndex + 1)));
     }
 }
 
@@ -179,26 +179,26 @@ function exitFullscreenImage() {
 
 
 function previousImage() {
-    addToIndex(-1);
+    addToImageIndex(-1);
     updateMainComponents();
 }
 
 
 function nextImage() {
-    addToIndex(1);
+    addToImageIndex(1);
     updateMainComponents();
 }
 
 
 function chooseImageByIndex(index) {
-    setIndex(index);
+    setImageIndex(index);
     updateMainComponents();
 }
 
 
 let imageIndex = 0;
 
-function addToIndex(value) {
+function addToImageIndex(value) {
     imageIndex += value;
 
     if (imageIndex < 0) {
@@ -208,10 +208,16 @@ function addToIndex(value) {
     }
 }
 
-function setIndex(index) {
-    imageIndex = Math.min(
-        Math.max(0, index),
-        imageCatalog.length - 1);
+function setImageIndex(index) {
+    if (isFinite(index)) {
+        let maxIndex = imageCatalog.length - 1;
+
+        index %= maxIndex;
+              
+        imageIndex = 0 <= index ? index : imageCatalog.length + index;    
+    } else {
+        imageIndex = 0;
+    }
 }
 
 
@@ -238,7 +244,7 @@ function chooseImageBySwipe(event) {
         let dx = unifyTouch(event).clientX - x0
 
         if (50 < Math.abs(dx)) {
-            addToIndex(0 - Math.sign(dx));
+            addToImageIndex(0 - Math.sign(dx));
             updateMainComponents();
         }
 
