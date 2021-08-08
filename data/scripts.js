@@ -140,22 +140,10 @@ function syncFullscreen() {
 }
 
 
-function fullscreenImage() {
-    scrollToTop();
-    $("body").addClass("locked");
-    $("div.modal.fullscreen").removeClass("hidden");
-    if (document.fullscreenElement === null) {
-        document.documentElement.requestFullscreen();
-    }
-}
-
-
-function exitFullscreenImage() {
-    $("div.modal.fullscreen").addClass("hidden");
-    $("body").removeClass("locked");
-    if (document.fullscreenElement !== null) {
-        document.exitFullscreen();
-    }
+function setBackgroundColor() {
+    let color = $("input#background").val();
+    $("body").css("background", color);
+    $("div.modal.fullscreen").css("background", color);
 }
 
 
@@ -166,8 +154,27 @@ function toggleDetails() {
 }
 
 
+function fullscreenImage() {
+    scrollToTop();
+    $("body").addClass("locked");
+    $("div.modal.fullscreen").removeClass("hidden");
+    if (document.fullscreenElement === null) {
+        document.documentElement.requestFullscreen();
+    }
+}
+
+
 function scrollToTop() {
     window.scrollTo(0, 0);
+}
+
+
+function exitFullscreenImage() {
+    $("div.modal.fullscreen").addClass("hidden");
+    $("body").removeClass("locked");
+    if (document.fullscreenElement !== null) {
+        document.exitFullscreen();
+    }
 }
 
 
@@ -208,11 +215,37 @@ function setIndex(index) {
 }
 
 
-function setBackgroundColor() {
-    let color = $("input#background").val();
-    $("body").css("background", color);
-    $("div.modal.fullscreen").css("background", color);
+//
+// Based on 'Simple Swipe with Vanilla JavaScript' by Ana Tudor
+//
+// https://css-tricks.com/simple-swipe-with-vanilla-javascript/
+
+let x0 = null;
+
+
+function unifyTouch(event) {
+    return event.changedTouches ? event.changedTouches[0] : event;
 }
+
+
+function markTouchStart(event) {
+    x0 = unifyTouch(event).clientX;
+}
+
+
+function chooseImageBySwipe(event) {
+    if (x0 || x0 === 0) {
+        let dx = unifyTouch(event).clientX - x0
+
+        if (50 < Math.abs(dx)) {
+            addToIndex(0 - Math.sign(dx));
+            updateMainComponents();
+        }
+
+        x0 = null;
+    }
+}
+
 
 
 document.addEventListener('click', blurClickTarget);
@@ -220,11 +253,14 @@ document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('fullscreenchange', syncFullscreen);
 
 $("input#background").change(setBackgroundColor);
+$("button.details").click(toggleDetails);
 
-$("button#previous").click(previousImage);
 $("button#fullscreen").click(fullscreenImage);
+$("button#previous").click(previousImage);
 $("button#next").click(nextImage);
 
-$("div.modal.fullscreen").click(exitFullscreenImage);
+let fullscreenModal = document.querySelector("div.modal.fullscreen");
+fullscreenModal.addEventListener('click', exitFullscreenImage);
+fullscreenModal.addEventListener('touchstart', markTouchStart);
+fullscreenModal.addEventListener('touchend', chooseImageBySwipe);
 
-$("button.details").click(toggleDetails);
