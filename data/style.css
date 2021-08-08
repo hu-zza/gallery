@@ -1,21 +1,19 @@
-/*
 @font-face {
     font-family: "Bodoni Moda";
-    src: url("");
+    src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf");
 }
 
 
 @font-face {
     font-family: "Dosis";
-    src: url();
+    src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/Dosis/Dosis-VariableFont_wght.ttf");
 }
 
 
 @font-face {
     font-family: "JetBrains Mono";
-    src: url();
+    src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf");
 }
-*/
 
 
 body {
@@ -216,12 +214,16 @@ main div.details > *, div.modal.details div > * {
 div.details h1 {
     font-family: "Bodoni Moda", Palatino, Times, serif;
     font-size: 4vh;
+    font-weight: 500;
+    font-variation-settings: "opsz" 11, "wght" 500;
 }
 
 
 div.details p, div.modal.details div > p {
     font-family: "Dosis", "Arial Narrow", sans-serif;
     font-size: 3vh;
+    font-weight: 300;
+    font-variation-settings: "wght" 300;
     line-height: 4vh;
     white-space: inherit;
     text-align: justify;
@@ -234,6 +236,8 @@ div.details a {
     position: absolute;
     font-family: "JetBrains Mono", monospace;
     font-size: 2.5vh;
+    font-weight: 100;
+    font-variation-settings: "wght" 100;
     text-decoration: none;
 }
 
