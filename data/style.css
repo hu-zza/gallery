@@ -1,26 +1,26 @@
 :root {
-    --placeholder: url("https://hu-zza.github.io/gallery/data/img/placeholder.svg");
-    --triangle:    url("https://hu-zza.github.io/gallery/data/img/triangle.svg");
-    --info-icon:   url("https://hu-zza.github.io/gallery/data/img/i.svg");
-    --close-icon:  url("https://hu-zza.github.io/gallery/data/img/x.svg");
+    --placeholder: url("/gallery/data/img/placeholder.svg");
+    --triangle:    url("/gallery/data/img/triangle.svg");
+    --info-icon:   url("/gallery/data/img/i.svg");
+    --close-icon:  url("/gallery/data/img/x.svg");
 }
 
 
 @font-face {
     font-family: "Bodoni Moda";
-    src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf");
+    src: url("/gallery/lib/Google_fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf");
 }
 
 
 @font-face {
     font-family: "Dosis";
-    src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/Dosis/Dosis-VariableFont_wght.ttf");
+    src: url("/gallery/lib/Google_fonts/Dosis/Dosis-VariableFont_wght.ttf");
 }
 
 
 @font-face {
     font-family: "JetBrains Mono";
-    src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf");
+    src: url("/gallery/lib/Google_fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf");
 }
 
 

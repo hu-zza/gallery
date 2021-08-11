@@ -1,5 +1,5 @@
 let request = new XMLHttpRequest();
-request.open("GET", "https://hu-zza.github.io/gallery/data/index.json");
+request.open("GET", "/gallery/data/index.json");
 request.responseType = "json";
 
 request.onload = function () {
@@ -13,8 +13,8 @@ request.send();
 
 const MAX_LONG_EDGE_MINIMUM = 4000;
 const RESOLUTION_STEP = 1000;
-const IMAGES_ROOT = "https://hu-zza.github.io/gallery/data/images/";
-const PLACEHOLDER_IMAGE = "https://hu-zza.github.io/gallery/data/img/placeholder.svg";
+const IMAGES_ROOT = "/gallery/data/images/";
+const PLACEHOLDER_IMAGE = "/gallery/data/img/placeholder.svg";
 
 let imageIndex = 0;
 let imageCatalog = []
