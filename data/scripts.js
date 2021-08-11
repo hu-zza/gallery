@@ -1,5 +1,17 @@
+const MAX_LONG_EDGE_MINIMUM = 4000;
+const RESOLUTION_STEP = 1000;
+const IMAGES_META = "/gallery/data/index.json";
+const IMAGES_ROOT = "/gallery/data/images/";
+const PLACEHOLDER_IMAGE = "/gallery/data/img/placeholder.svg";
+
+let imageIndex = 0;
+let imageCatalog = []
+let longEdgeMinimum = 0;
+
+
+
 let request = new XMLHttpRequest();
-request.open("GET", "/gallery/data/index.json");
+request.open("GET", IMAGES_META);
 request.responseType = "json";
 
 request.onload = function () {
@@ -11,15 +23,6 @@ request.onload = function () {
 request.send();
 
 
-const MAX_LONG_EDGE_MINIMUM = 4000;
-const RESOLUTION_STEP = 1000;
-const IMAGES_ROOT = "/gallery/data/images/";
-const PLACEHOLDER_IMAGE = "/gallery/data/img/placeholder.svg";
-
-let imageIndex = 0;
-let imageCatalog = []
-let longEdgeMinimum = 0;
-
 
 function initializeGallery() {
     setImageResolutionAutomatically();
@@ -30,10 +33,10 @@ function initializeGallery() {
 
 
 function setImageResolutionAutomatically() {
-    longEdgeMinimum = Math.max(window.screen.availWidth, window.screen.availHeight);
+    longEdgeMinimum = Math.max(window.screen.width, window.screen.height);
 
-    longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM, 
-                               Math.ceil(longEdgeMinimum / RESOLUTION_STEP) * RESOLUTION_STEP);
+    longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM,
+        Math.ceil(longEdgeMinimum / RESOLUTION_STEP) * RESOLUTION_STEP);
 
     $("select#imageResolution > *").removeAttr("selected");
     $(`select#imageResolution > [value="${longEdgeMinimum}"]`).attr("selected", "selected");
@@ -50,16 +53,38 @@ function tryToFetchImageIndex() {
 
 
 function refreshThumbnails() {
-    $("nav").text("");
-    imageCatalog.forEach(createThumbnail);
+    let nav = document.querySelector("nav");
+    let thumbnails = createThumbnails();
+
+    nav.innerText = "";
+    nav.append(thumbnails);
 }
 
 
-function createThumbnail(image, id) {
-    $("nav").append(
-        `<a href="#${id}" id="thumbnail_${id}" onClick="chooseImageByIndex(${id})" title="${image.details.title}">
-            <div style="background-image: url(${getThumbnailLink(id)});"></div>
-        </a>`);
+function createThumbnails() {
+    let result = document.createDocumentFragment();
+
+    imageCatalog.forEach(
+        (img, iter) => result.append(createThumbnail(img, iter)));
+
+    return result;
+}
+
+
+function createThumbnail(imageObject, id) {
+    let result = document.createElement("a");
+
+    result.id    = `thumbnail_${id}`;
+    result.href  = `#${id}`;
+    result.title = imageObject.details.title;
+    result.onclick = () => chooseImageByIndex(id);
+
+    let inner = document.createElement("div");
+    inner.style.backgroundImage = `url(${getThumbnailLink(id)})`;
+
+    result.append(inner);
+
+    return result;
 }
 
 
@@ -103,7 +128,9 @@ function getFullResolutionLink(index) {
 
 
 function completeLink(rawUrl) {
-    if (rawUrl.startsWith(IMAGES_ROOT) || rawUrl.startsWith("https://") || rawUrl.startsWith("http://")) {
+    if (rawUrl.startsWith(IMAGES_ROOT) || 
+        rawUrl.startsWith("https://")  || 
+        rawUrl.startsWith("http://")) {
         return rawUrl;
     } else {
         return `${IMAGES_ROOT}${rawUrl}`;
@@ -134,15 +161,16 @@ function refreshMainImageContainers() {
 
 function refreshTextContainers() {
     let current = imageCatalog[imageIndex];
+    let details = current.details;
+    let caption = `${details.author}  –  ${details.title}`;
 
-    let title = `${current.details.author}  –  ${current.details.title}`;
-    $("div.details h1").text(title);
-    $("div.details h1").attr("title", title);
-    $("div.details p").text(current.details.description);
-    $("div.details a").text(current.details.url);
-    $("div.details a").attr("href", current.details.url);
-    $("div.details a").attr("title", `External link about image: ${current.details.title}`);
-    $("div.fullscreen img").attr("alt", title);
+    $("div.details h1").text(caption);
+    $("div.details h1").attr("title", caption);
+    $("div.details p").text(details.description);
+    $("div.details a").text(details.url);
+    $("div.details a").attr("href", details.url);
+    $("div.details a").attr("title", `External link about image: ${details.title}`);
+    $("div.fullscreen img").attr("alt", caption);
 }
 
 
@@ -150,6 +178,7 @@ function updateActiveFlagOfThumbnails() {
     $("nav a.active").removeClass("active");
     $(`nav a#thumbnail_${imageIndex}`).addClass("active");
 }
+
 
 
 function blurClickTarget(event) {
@@ -198,7 +227,7 @@ function toggleDetails() {
     $("body").toggleClass("locked");
     $("div.modal.details").toggleClass("hidden");
     $("button.details").toggleClass("close");
-    
+
     let button = document.querySelector("button.details");
     button.title = button.title === "Show details" ? "Close details" : "Show details";
 }
@@ -247,14 +276,17 @@ function chooseImageByIndex(index) {
 
 
 function addToImageIndex(value) {
-    imageIndex += value;
+    let length = imageCatalog.length;
+
+    imageIndex += value % length;
 
     if (imageIndex < 0) {
-        imageIndex += imageCatalog.length - 1;
-    } else if (imageCatalog.length <= imageIndex) {
-        imageIndex -= imageCatalog.length;
+        imageIndex += length - 1;
+    } else if (length <= imageIndex) {
+        imageIndex -= length;
     }
 }
+
 
 function setImageIndex(index) {
     if (isFinite(index)) {
@@ -316,4 +348,3 @@ let fullscreenModal = document.querySelector("div.modal.fullscreen");
 fullscreenModal.addEventListener('click', exitFullscreenImage);
 fullscreenModal.addEventListener('touchstart', markTouchStart);
 fullscreenModal.addEventListener('touchend', chooseImageBySwipe);
-
