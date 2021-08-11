@@ -57,6 +57,7 @@ nav, footer {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: center;
     margin: 5vh;
 }
 
@@ -65,6 +66,7 @@ nav a {
     position: relative;
     display: block;
     margin: 20px;
+    border: none;
     border-radius: 5px;
     background-color: white;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
@@ -134,7 +136,7 @@ button {
     height: 70vh;
     padding: 2vh;
     background: rgba(0, 0, 0, 0);
-    border: 0;
+    border: none;
     cursor: pointer;
 }
 
@@ -339,4 +341,36 @@ div.details a:hover {
         bottom: 5vh;
         max-width: 86%;
     }
+}
+
+
+footer > * {
+    box-sizing: border-box;
+    min-width: 70px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 0 10px;
+    font-family: "Dosis", "Arial Narrow", sans-serif;
+    color: white;
+}
+
+
+footer .madeBy {
+    height: auto;
+    padding: 10px 15px;
+    border: 1px solid gray;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+
+footer .madeBy a {
+    color: white;
+    text-decoration-style: dotted;
+}
+
+footer select {
+    padding: 0 6px;
+    font-size: 20px;
+    font-weight: 600;
+    background: #333;
 }

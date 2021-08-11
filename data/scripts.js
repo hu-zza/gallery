@@ -1,22 +1,34 @@
 let request = new XMLHttpRequest();
 request.open("GET", "https://hu-zza.github.io/gallery/data/index.json");
 request.responseType = "json";
-request.send();
-
-
-let imageCatalog = []
 
 request.onload = function () {
     imageCatalog = request.response;
-    startGallery();
+    $(".javaScriptDependent").removeClass("disabled");
+    initializeGallery();
 }
 
+request.send();
 
-function startGallery() {
-    $(".javaScriptDependent").toggleClass("disabled");
+
+const MAX_LONG_EDGE_MINIMUM = 4000;
+let imageCatalog = []
+let longEdgeMinimum = 0;
+
+
+function initializeGallery() {
+    setImageResolutionAutomatically();
     tryToFetchImageIndex();
     refreshThumbnails();
     updateMainComponents();
+}
+
+
+function setImageResolutionAutomatically() {
+    longEdgeMinimum = Math.max(window.screen.availWidth, window.screen.availHeight);
+    longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM, Math.ceil(longEdgeMinimum / 1000) * 1000);
+    $("select#imageResolution > *").removeAttr("selected");
+    $(`select#imageResolution > [value="${longEdgeMinimum}"]`).attr("selected", "selected");
 }
 
 
@@ -71,7 +83,7 @@ function getFullResolutionLink(index) {
 
 
 function completeLink(rawUrl) {
-    return rawUrl.startsWith("http://") || rawUrl.startsWith("https://") ? rawUrl : `https://hu-zza.github.io/gallery/data/pictures/${rawUrl}`;
+    return rawUrl.startsWith("http://") || rawUrl.startsWith("https://") ? rawUrl : `https://hu-zza.github.io/gallery/data/images/${rawUrl}`;
 }
 
 
@@ -99,11 +111,14 @@ function refreshMainImageContainers() {
 function refreshTextContainers() {
     let current = imageCatalog[imageIndex];
 
-    $("div.details h1").text(`${current.details.author}  –  ${current.details.title}`);
-    $("div.details h1").attr("title", `${current.details.author}  –  ${current.details.title}`);
+    let title = `${current.details.author}  –  ${current.details.title}`;
+    $("div.details h1").text(title);
+    $("div.details h1").attr("title", title);
     $("div.details p").text(current.details.description);
     $("div.details a").text(current.details.url);
     $("div.details a").attr("href", current.details.url);
+    $("div.details a").attr("title", `External link about image: ${current.details.title}`);
+    $("div.fullscreen img").attr("alt", title);
 }
 
 
@@ -114,7 +129,9 @@ function updateActiveFlagOfThumbnails() {
 
 
 function blurClickTarget(event) {
-    event.target.blur();
+    if (!event.target.classList.contains("needFocus")) {
+        event.target.blur();
+    }
 }
 
 
@@ -151,6 +168,9 @@ function toggleDetails() {
     $("body").toggleClass("locked");
     $("div.modal.details").toggleClass("hidden");
     $("button.details").toggleClass("close");
+    
+    let button = document.querySelector("button.details");
+    button.title = button.title === "Show details" ? "Close details" : "Show details";
 }
 
 
@@ -211,8 +231,8 @@ function addToImageIndex(value) {
 function setImageIndex(index) {
     if (isFinite(index)) {
         index %= imageCatalog.length;
-              
-        imageIndex = 0 <= index ? index : imageCatalog.length + index;    
+
+        imageIndex = 0 <= index ? index : imageCatalog.length + index;
     } else {
         imageIndex = 0;
     }

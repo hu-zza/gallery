@@ -22,24 +22,24 @@
 </head>
 <body>
     <main class="javaScriptDependent disabled">
-        <button class="javaScriptDependent disabled" id="previous">
+        <button class="javaScriptDependent disabled" id="previous" title="Previous image">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 5.292 7.938" xmlns:v="https://vecta.io/nano">
                 <path d="M4.417 6.773a.65.65 0 0 1-.936 0L.675 3.967 3.481 1.16a.66.66 0 0 1 1.108.296.66.66 0 0 1-.172.639L2.546 3.967l1.871 1.871a.65.65 0 0 1 0 .936z"/>
             </svg>
         </button>
 
-        <button class="javaScriptDependent disabled" id="fullscreen"></button>
+        <button class="javaScriptDependent disabled" id="fullscreen" title="Enter fullscreen"></button>
 
-        <button class="javaScriptDependent disabled" id="next">
+        <button class="javaScriptDependent disabled" id="next" title="Next image">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 5.292 7.938" xmlns:v="https://vecta.io/nano">
                 <path d="M.875 6.773a.65.65 0 0 0 .936 0l2.806-2.806L1.81 1.16a.66.66 0 0 0-1.108.296.66.66 0 0 0 .172.639l1.871 1.871L.875 5.838a.65.65 0 0 0 0 .936z"/>
             </svg>
         </button>
 
         <div class="javaScriptDependent disabled details">
-            <h1>Author&nbsp;&nbsp;&ndash;&nbsp;&nbsp;Title</h1>
+            <h1>Author – Title</h1>
             <p>Description</p>
-            <a href="#" target="_blank">External link</a>
+            <a href="#" target="_blank" title="External link">External link</a>
         </div>
     </main>
 
@@ -50,22 +50,31 @@
 
 
     <footer>
-        <input type="color" name="background" id="background" value="#333333">
+        <input type="color" name="background" id="background" value="#333333" title="Background color">
+        <div class="madeBy">
+            by <a href="https://zza.hu" target="_blank" title="My personal page">hu-zza</a>
+        </div>
+        <select id="imageResolution" class="needFocus" title="Image resolution">
+            <option value="1000" title="Long edge min. 1000px">1K</option>
+            <option value="2000" title="Long edge min. 2000px">2K</option>
+            <option value="3000" title="Long edge min. 3000px">3K</option>
+            <option value="4000" title="Long edge min. 4000px">4K</option>
+        </select>
     </footer>
 
 
-    <div class="modal fullscreen hidden">
-        <img src="https://hu-zza.github.io/gallery/data/img/placeholder.svg"">
+    <div class="modal fullscreen hidden" title="Exit fullscreen">
+        <img src="/data/img/placeholder.svg" alt="">
     </div>
 
 
-    <button class="javaScriptDependent disabled details"></button>
+    <button class="javaScriptDependent disabled details" title="Show details"></button>
 
     <div class="modal details hidden">
         <div>
-            <h1>Author&nbsp;&nbsp;&ndash;&nbsp;&nbsp;Title</h1>
+            <h1>Author – Title</h1>
             <p>Description</p>
-            <a href="#" target="_blank">External link</a>
+            <a href="#" target="_blank" title="External link">External link</a>
         </div>
     </div>
 

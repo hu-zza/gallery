@@ -1,9 +1,13 @@
 [
     {
         "image": {
+            "full":        "full/Brad_Huchteman_-_Stone_Mountain.jpg",
             "thumbnail":   "thumbnail/Brad_Huchteman_-_Stone_Mountain.jpg",
             "display":     "display/Brad_Huchteman_-_Stone_Mountain.jpg",
-            "full":        "full/Brad_Huchteman_-_Stone_Mountain.jpg"
+            "1000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg",
+            "2000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg",
+            "3000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg",
+            "4000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg"
         },
         "details": {
             "author":      "Brad Huchteman",
@@ -14,9 +18,13 @@
     },
     {
         "image": {
+            "full":        "https://chandra.si.edu/photo/2021/gcenter/gcenter.tif",
             "thumbnail":   "thumbnail/gcenter-2021.jpg",
             "display":     "display/gcenter-2021.jpg",
-            "full":        "https://chandra.si.edu/photo/2021/gcenter/gcenter.tif"
+            "1000":        "display/gcenter-2021.jpg",
+            "2000":        "display/gcenter-2021.jpg",
+            "3000":        "display/gcenter-2021.jpg",
+            "4000":        "display/gcenter-2021.jpg"
         },
         "details": {
             "author":      "Q. Daniel Wang",
@@ -27,9 +35,13 @@
     },
     {
         "image": {
+            "full":        "full/Jakkree_Thampitakkul_-_Farmer.jpg",
             "thumbnail":   "thumbnail/Jakkree_Thampitakkul_-_Farmer.jpg",
             "display":     "display/Jakkree_Thampitakkul_-_Farmer.jpg",
-            "full":        "full/Jakkree_Thampitakkul_-_Farmer.jpg"
+            "1000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg",
+            "2000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg",
+            "3000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg",
+            "4000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg"
         },
         "details": {
             "author":      "Jakkree Thampitakkul",
@@ -40,9 +52,13 @@
     },
     {
         "image": {
+            "full":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop",
             "thumbnail":   "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&h=100&q=80",
             "display":     "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2048&q=80",
-            "full":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop"
+            "1000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+            "2000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80",
+            "3000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3000&q=80",
+            "4000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4000&q=80"
         },
         "details": {
             "author":      "Rodrigo Ramos",
