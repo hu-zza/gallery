@@ -12,6 +12,11 @@ request.send();
 
 
 const MAX_LONG_EDGE_MINIMUM = 4000;
+const RESOLUTION_STEP = 1000;
+const IMAGES_ROOT = "/data/images/";
+const PLACEHOLDER_IMAGE = "../img/placeholder.svg";
+
+let imageIndex = 0;
 let imageCatalog = []
 let longEdgeMinimum = 0;
 
@@ -26,7 +31,10 @@ function initializeGallery() {
 
 function setImageResolutionAutomatically() {
     longEdgeMinimum = Math.max(window.screen.availWidth, window.screen.availHeight);
-    longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM, Math.ceil(longEdgeMinimum / 1000) * 1000);
+
+    longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM, 
+                               Math.ceil(longEdgeMinimum / RESOLUTION_STEP) * RESOLUTION_STEP);
+
     $("select#imageResolution > *").removeAttr("selected");
     $(`select#imageResolution > [value="${longEdgeMinimum}"]`).attr("selected", "selected");
 }
@@ -58,32 +66,48 @@ function createThumbnail(image, id) {
 function getThumbnailLink(index) {
     let current = imageCatalog[index];
 
-    let rawLink = current.image.thumbnail != "" ?
+    let rawLink = current.image.thumbnail ?
         current.image.thumbnail :
-        getDisplayLink(index);
+        getDisplayLink(index, 1000);
 
     return completeLink(rawLink);
 }
 
 
-function getDisplayLink(index) {
+function getDisplayLink(index, targetLongEdgeMinimum) {
     let current = imageCatalog[index];
 
-    let rawLink = current.image.display != "" ?
-        current.image.display :
-        getFullResolutionLink(index);
+    let rawLink = "";
+    let display = current.image.display;
+
+    while (rawLink === "") {
+
+        if (display[targetLongEdgeMinimum]) {
+            rawLink = display[targetLongEdgeMinimum];
+        } else {
+            targetLongEdgeMinimum += 1000;
+
+            if (MAX_LONG_EDGE_MINIMUM < targetLongEdgeMinimum) {
+                rawLink = getFullResolutionLink(index);
+            }
+        }
+    }
 
     return completeLink(rawLink);
 }
 
 
 function getFullResolutionLink(index) {
-    return imageCatalog[index].image.full;
+    return imageCatalog[index].image.full || PLACEHOLDER_IMAGE;
 }
 
 
 function completeLink(rawUrl) {
-    return rawUrl.startsWith("http://") || rawUrl.startsWith("https://") ? rawUrl : `https://hu-zza.github.io/gallery/data/images/${rawUrl}`;
+    if (rawUrl.startsWith(IMAGES_ROOT) || rawUrl.startsWith("https://") || rawUrl.startsWith("http://")) {
+        return rawUrl;
+    } else {
+        return `${IMAGES_ROOT}${rawUrl}`;
+    }
 }
 
 
@@ -102,7 +126,7 @@ function updateLocationHref() {
 
 
 function refreshMainImageContainers() {
-    let link = getDisplayLink(imageIndex);
+    let link = getDisplayLink(imageIndex, longEdgeMinimum);
     $("main").css("background-image", `url(${link})`);
     $("div.modal.fullscreen img").attr("src", link);
 }
@@ -158,9 +182,15 @@ function syncFullscreen() {
 
 
 function setBackgroundColor() {
-    let color = $("input#background").val();
-    $("body").css("background", color);
-    $("div.modal.fullscreen").css("background", color);
+    let color = $("input#backgroundColor").val();
+    $("body").css("backgroundColor", color);
+    $("div.modal.fullscreen").css("backgroundColor", color);
+}
+
+
+function setImageResolution() {
+    longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM, $("select#imageResolution").val());
+    refreshMainImageContainers();
 }
 
 
@@ -215,8 +245,6 @@ function chooseImageByIndex(index) {
     updateMainComponents();
 }
 
-
-let imageIndex = 0;
 
 function addToImageIndex(value) {
     imageIndex += value;
@@ -276,7 +304,8 @@ document.addEventListener('click', blurClickTarget);
 document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('fullscreenchange', syncFullscreen);
 
-$("input#background").change(setBackgroundColor);
+$("input#backgroundColor").change(setBackgroundColor);
+$("select#imageResolution").change(setImageResolution);
 $("button.details").click(toggleDetails);
 
 $("button#fullscreen").click(fullscreenImage);

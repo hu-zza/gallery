@@ -3,11 +3,12 @@
         "image": {
             "full":        "full/Brad_Huchteman_-_Stone_Mountain.jpg",
             "thumbnail":   "thumbnail/Brad_Huchteman_-_Stone_Mountain.jpg",
-            "display":     "display/Brad_Huchteman_-_Stone_Mountain.jpg",
-            "1000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg",
-            "2000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg",
-            "3000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg",
-            "4000":        "display/Brad_Huchteman_-_Stone_Mountain.jpg"
+            "display": {
+                "1000":        "display/1000/Brad_Huchteman_-_Stone_Mountain.jpg",
+                "2000":        "display/2000/Brad_Huchteman_-_Stone_Mountain.jpg",
+                "3000":        "display/3000/Brad_Huchteman_-_Stone_Mountain.jpg",
+                "4000":        "display/4000/Brad_Huchteman_-_Stone_Mountain.jpg"
+            }
         },
         "details": {
             "author":      "Brad Huchteman",
@@ -16,15 +17,17 @@
             "url":         "https://unsplash.com/photos/O93THGX6dBw"
         }
     },
+
     {
         "image": {
             "full":        "https://chandra.si.edu/photo/2021/gcenter/gcenter.tif",
             "thumbnail":   "thumbnail/gcenter-2021.jpg",
-            "display":     "display/gcenter-2021.jpg",
-            "1000":        "display/gcenter-2021.jpg",
-            "2000":        "display/gcenter-2021.jpg",
-            "3000":        "display/gcenter-2021.jpg",
-            "4000":        "display/gcenter-2021.jpg"
+            "display": {
+                "1000":        "display/1000/gcenter-2021.jpg",
+                "2000":        "display/2000/gcenter-2021.jpg",
+                "3000":        "display/3000/gcenter-2021.jpg",
+                "4000":        "display/4000/gcenter-2021.jpg"
+            }
         },
         "details": {
             "author":      "Q. Daniel Wang",
@@ -33,15 +36,17 @@
             "url":         "https://arxiv.org/abs/2010.02932"
         }
     },
+
     {
         "image": {
             "full":        "full/Jakkree_Thampitakkul_-_Farmer.jpg",
             "thumbnail":   "thumbnail/Jakkree_Thampitakkul_-_Farmer.jpg",
-            "display":     "display/Jakkree_Thampitakkul_-_Farmer.jpg",
-            "1000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg",
-            "2000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg",
-            "3000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg",
-            "4000":        "display/Jakkree_Thampitakkul_-_Farmer.jpg"
+            "display": {
+                "1000":        "display/1000/Jakkree_Thampitakkul_-_Farmer.jpg",
+                "2000":        "display/2000/Jakkree_Thampitakkul_-_Farmer.jpg",
+                "3000":        "display/3000/Jakkree_Thampitakkul_-_Farmer.jpg",
+                "4000":        "display/4000/Jakkree_Thampitakkul_-_Farmer.jpg"
+            }
         },
         "details": {
             "author":      "Jakkree Thampitakkul",
@@ -50,15 +55,17 @@
             "url":         "https://500px.com/photo/102769489/farmer-went-to-survey-the-gold-fields-ready-for-harvest.-by-jakkree-thampitakkul"
         }
     },
+
     {
         "image": {
             "full":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop",
             "thumbnail":   "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&h=100&q=80",
-            "display":     "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2048&q=80",
-            "1000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-            "2000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80",
-            "3000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3000&q=80",
-            "4000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4000&q=80"
+            "display": {
+                "1000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                "2000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80",
+                "3000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3000&q=80",
+                "4000":        "https://images.unsplash.com/photo-1627857517329-f7857341feac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4000&q=80"
+            }
         },
         "details": {
             "author":      "Rodrigo Ramos",

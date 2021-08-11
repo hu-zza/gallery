@@ -1,3 +1,11 @@
+:root {
+    --placeholder: url("https://hu-zza.github.io/gallery/data/img/placeholder.svg");
+    --triangle:    url("https://hu-zza.github.io/gallery/data/img/triangle.svg");
+    --info-icon:   url("https://hu-zza.github.io/gallery/data/img/i.svg");
+    --close-icon:  url("https://hu-zza.github.io/gallery/data/img/x.svg");
+}
+
+
 @font-face {
     font-family: "Bodoni Moda";
     src: url("https://hu-zza.github.io/gallery/lib/Google_fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf");
@@ -44,7 +52,7 @@ main {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
-    background-image: url("https://hu-zza.github.io/gallery/data/img/placeholder.svg");
+    background-image: var(--placeholder);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -78,7 +86,7 @@ nav a.active:before {
     position: absolute;
     top: -20px;
     left: 45px;
-    content: url("https://hu-zza.github.io/gallery/data/img/triangle.svg");
+    content: var(--triangle);
     z-index: -1;
 }
 
@@ -98,7 +106,7 @@ nav a div {
     width: 100px;
     height: 100px;
     margin: 7px;
-    background-image: url("https://hu-zza.github.io/gallery/data/img/placeholder.svg");
+    background-image: var(--placeholder);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -303,7 +311,7 @@ div.details a:hover {
         height: 10vw;
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.7);
-        background-image: url("https://hu-zza.github.io/gallery/data/img/i.svg");
+        background-image: var(--info-icon);
         background-position: center;
         background-size: cover;
         transition: filter 0.5s, background-color 0.5s;
@@ -321,7 +329,7 @@ div.details a:hover {
         right: 2vw;
         width: 10vw;
         height: 10vw;
-        background-image: url("https://hu-zza.github.io/gallery/data/img/x.svg");
+        background-image: var(--close-icon);
     }
 
 
