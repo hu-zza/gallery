@@ -13,8 +13,8 @@ request.send();
 
 const MAX_LONG_EDGE_MINIMUM = 4000;
 const RESOLUTION_STEP = 1000;
-const IMAGES_ROOT = "/data/images/";
-const PLACEHOLDER_IMAGE = "../img/placeholder.svg";
+const IMAGES_ROOT = "https://hu-zza.github.io/gallery/data/images/";
+const PLACEHOLDER_IMAGE = "https://hu-zza.github.io/gallery/data/img/placeholder.svg";
 
 let imageIndex = 0;
 let imageCatalog = []
