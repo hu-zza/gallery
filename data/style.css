@@ -1,5 +1,4 @@
 :root {
-    --placeholder: url("/gallery/data/img/placeholder.svg");
     --triangle:    url("/gallery/data/img/triangle.svg");
     --info-icon:   url("/gallery/data/img/i.svg");
     --close-icon:  url("/gallery/data/img/x.svg");
@@ -21,6 +20,12 @@
 @font-face {
     font-family: "JetBrains Mono";
     src: url("/gallery/lib/Google_fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf");
+}
+
+
+.disabled {
+    z-index: -1;
+    opacity: 0;
 }
 
 
@@ -48,11 +53,16 @@ h2.noscript {
 }
 
 
+div.spinner-grid {
+    position: absolute;
+    top: calc(37.5vh - 30px);
+}
+
+
 main {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
-    background-image: var(--placeholder);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -70,80 +80,12 @@ nav, footer {
 }
 
 
-nav a {
-    position: relative;
-    display: block;
-    margin: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
-    transition: box-shadow 0.5s;
-}
-
-
-nav a.active:before {
-    position: absolute;
-    top: -20px;
-    left: 45px;
-    content: var(--triangle);
-    z-index: -1;
-}
-
-
-nav a:hover {
-    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.6);
-    transition: box-shadow 0.5s;
-}
-
-
-nav a.active {
-    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.6);
-}
-
-
-nav a div {
-    width: 100px;
-    height: 100px;
-    margin: 7px;
-    background-image: var(--placeholder);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-
-.disabled {
-    opacity: 0;
-}
-
-
-main.disabled {
-    animation: opacityPulse 3s infinite;
-}
-
-
-@keyframes opacityPulse {
-    0% {
-        opacity: 0.5;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.5;
-    }
-}
-
-
 button {
     box-sizing: border-box;
     width: 25vw;
     height: 70vh;
     padding: 2vh;
-    background: rgba(0, 0, 0, 0);
+    background: none;
     border: none;
     cursor: pointer;
 }
@@ -182,10 +124,10 @@ button#next {
 
 
 div.modal {
+    z-index: 20;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 20;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -258,10 +200,6 @@ div.details a:hover {
 
 
 @media (orientation: landscape) {
-    button.details, div.modal.details {
-        display: none;
-    }
-
     main div.details {
         position: absolute;
         bottom: -20vh;
@@ -294,6 +232,10 @@ div.details a:hover {
     main div.details a {
         bottom: 1vh;
     }
+
+    button.details, div.modal.details {
+        display: none;
+    }
 }
 
 
@@ -303,12 +245,12 @@ div.details a:hover {
     }
 
     button.details {
-        z-index: 10;
+        z-index: 30;
         position: absolute;
         top: 2vh;
         right: 2vw;
-        width: 10vw;
-        height: 10vw;
+        width: calc(5vw + 10px);
+        height: calc(5vw + 10px);
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.7);
         background-image: var(--info-icon);
@@ -324,14 +266,8 @@ div.details a:hover {
     }
 
     button.details.close {
-        z-index: 30;
-        top: 2vh;
-        right: 2vw;
-        width: 10vw;
-        height: 10vw;
         background-image: var(--close-icon);
     }
-
 
     div.modal.details div {
         box-sizing: border-box;
@@ -349,6 +285,66 @@ div.details a:hover {
         bottom: 5vh;
         max-width: 86%;
     }
+}
+
+
+nav a {
+    position: relative;
+    display: block;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.5s;
+}
+
+
+nav a.active:before {
+    position: absolute;
+    top: -20px;
+    left: 45px;
+    content: var(--triangle);
+}
+
+
+nav a:hover {
+    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.5s;
+}
+
+
+nav a.active {
+    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.6);
+}
+
+
+nav a div {
+    width: 100px;
+    height: 100px;
+    margin: 7px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+nav a div.thumbnail-container {
+    z-index: 10;
+    position: relative;
+}
+
+
+nav a div.spinner-grid {
+    position: absolute;
+    top: 16px;
+    left: 17px;
+    margin: 0;
+}
+
+
+nav a div.spinner-grid div {
+    margin: 0;
 }
 
 
@@ -381,4 +377,87 @@ footer select {
     font-size: 20px;
     font-weight: 600;
     background: #333;
+}
+
+
+/*
+    Spinner by PlotDB Ltd. (https://loading.io/css/)
+*/ 
+
+.spinner-grid {
+    width: 80px;
+    height: 80px;
+}
+
+.spinner-grid div {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: silver;
+    animation: spinner-grid 1.2s linear infinite;
+}
+
+.spinner-grid div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+}
+
+.spinner-grid div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+}
+
+.spinner-grid div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+}
+
+.spinner-grid div:nth-child(4) {
+    top: 32px;
+    left: 8px;
+    animation-delay: -0.4s;
+}
+
+.spinner-grid div:nth-child(5) {
+    top: 32px;
+    left: 32px;
+    animation-delay: -0.8s;
+}
+
+.spinner-grid div:nth-child(6) {
+    top: 32px;
+    left: 56px;
+    animation-delay: -1.2s;
+}
+
+.spinner-grid div:nth-child(7) {
+    top: 56px;
+    left: 8px;
+    animation-delay: -0.8s;
+}
+
+.spinner-grid div:nth-child(8) {
+    top: 56px;
+    left: 32px;
+    animation-delay: -1.2s;
+}
+
+.spinner-grid div:nth-child(9) {
+    top: 56px;
+    left: 56px;
+    animation-delay: -1.6s;
+}
+
+@keyframes spinner-grid {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }

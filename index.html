@@ -21,6 +21,12 @@
     <title>gallery</title>
 </head>
 <body>
+    <div class="spinner-grid">
+        <div></div>  <div></div>  <div></div>
+        <div></div>  <div></div>  <div></div>
+        <div></div>  <div></div>  <div></div>
+    </div>
+
     <main class="javaScriptDependent disabled">
         <button class="javaScriptDependent disabled" id="previous" title="Previous image">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 5.292 7.938" xmlns:v="https://vecta.io/nano">
@@ -50,11 +56,11 @@
 
 
     <footer>
-        <input type="color" id="backgroundColor" value="#333333" title="Background color">
+        <input class="javaScriptDependent disabled" type="color" id="backgroundColor" value="#333333" title="Background color">
         <div class="madeBy">
             by <a href="https://zza.hu" target="_blank" title="My personal page">hu-zza</a>
         </div>
-        <select id="imageResolution" class="needFocus" title="Image resolution">
+        <select class="javaScriptDependent disabled" id="imageResolution" class="needFocus" title="Image resolution">
             <option value="1000" title="Long edge min. 1000px">1K</option>
             <option value="2000" title="Long edge min. 2000px">2K</option>
             <option value="3000" title="Long edge min. 3000px">3K</option>

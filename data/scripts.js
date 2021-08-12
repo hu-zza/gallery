@@ -1,8 +1,10 @@
 const MAX_LONG_EDGE_MINIMUM = 4000;
-const RESOLUTION_STEP = 1000;
-const IMAGES_META = "/gallery/data/index.json";
-const IMAGES_ROOT = "/gallery/data/images/";
-const PLACEHOLDER_IMAGE = "/gallery/data/img/placeholder.svg";
+const LENGTH_STEP = 1000;
+const DISPLAY_FALLBACK = true;
+const IMAGES_META  = "/gallery/data/index.json";
+const IMAGES_ROOT  = "/gallery/data/images/";
+const SPINNER_NODE = document.querySelector("div.spinner-grid").cloneNode(true);
+
 
 let imageIndex = 0;
 let imageCatalog = []
@@ -36,7 +38,7 @@ function setImageResolutionAutomatically() {
     longEdgeMinimum = Math.max(window.screen.width, window.screen.height);
 
     longEdgeMinimum = Math.min(MAX_LONG_EDGE_MINIMUM,
-        Math.ceil(longEdgeMinimum / RESOLUTION_STEP) * RESOLUTION_STEP);
+        Math.ceil(longEdgeMinimum / LENGTH_STEP) * LENGTH_STEP);
 
     $("select#imageResolution > *").removeAttr("selected");
     $(`select#imageResolution > [value="${longEdgeMinimum}"]`).attr("selected", "selected");
@@ -54,14 +56,14 @@ function tryToFetchImageIndex() {
 
 function refreshThumbnails() {
     let nav = document.querySelector("nav");
-    let thumbnails = createThumbnails();
+    let thumbnails = createAllThumbnails();
 
     nav.innerText = "";
     nav.append(thumbnails);
 }
 
 
-function createThumbnails() {
+function createAllThumbnails() {
     let result = document.createDocumentFragment();
 
     imageCatalog.forEach(
@@ -72,58 +74,92 @@ function createThumbnails() {
 
 
 function createThumbnail(imageObject, id) {
+    let result = createThumbnailFrame(imageObject, id);
+
+    result.append(SPINNER_NODE.cloneNode(true));
+    result.append(createThumbnailContainer(id));
+
+    return result;
+}
+
+
+function createThumbnailFrame(img, id) {
     let result = document.createElement("a");
 
     result.id    = `thumbnail_${id}`;
     result.href  = `#${id}`;
-    result.title = imageObject.details.title;
+    result.title = img.details && img.details.title ? img.details.title : "[without title]";
     result.onclick = () => chooseImageByIndex(id);
 
-    let inner = document.createElement("div");
-    inner.style.backgroundImage = `url(${getThumbnailLink(id)})`;
+    return result;
+}
 
-    result.append(inner);
+
+function createThumbnailContainer(id) {
+    let result = document.createElement("div");
+
+    result.className = "thumbnail-container"
+    result.style.backgroundImage = `url(${getThumbnailLink(id)})`;
 
     return result;
 }
 
 
 function getThumbnailLink(index) {
-    let current = imageCatalog[index];
-
-    let rawLink = current.image.thumbnail ?
-        current.image.thumbnail :
-        getDisplayLink(index, 1000);
-
-    return completeLink(rawLink);
+    let rawLink = imageCatalog[index].image.thumbnail;
+    
+    return completeLink(rawLink ? rawLink : getDisplayLink(index, LENGTH_STEP));
 }
 
 
 function getDisplayLink(index, targetLongEdgeMinimum) {
-    let current = imageCatalog[index];
+    let displayObject = imageCatalog[index].image.display;
 
-    let rawLink = "";
-    let display = current.image.display;
+    let rawLink = getLinkFromDisplayObject(displayObject, targetLongEdgeMinimum);
 
-    while (rawLink === "") {
+    if (rawLink === "") {
+        rawLink = getFullResolutionLink(index);
+    }
 
-        if (display[targetLongEdgeMinimum]) {
-            rawLink = display[targetLongEdgeMinimum];
-        } else {
-            targetLongEdgeMinimum += 1000;
-
-            if (MAX_LONG_EDGE_MINIMUM < targetLongEdgeMinimum) {
-                rawLink = getFullResolutionLink(index);
-            }
-        }
+    if (rawLink === "" && DISPLAY_FALLBACK) {
+        rawLink = getFallbackDisplayLink(displayObject);
     }
 
     return completeLink(rawLink);
 }
 
 
+function getLinkFromDisplayObject(displayObject, edgeMinimum) {
+    if (displayObject) {
+        while (edgeMinimum <= MAX_LONG_EDGE_MINIMUM) {
+
+            if (displayObject[edgeMinimum]) {
+                return displayObject[edgeMinimum];
+            }
+
+            edgeMinimum += LENGTH_STEP;
+        }
+    }
+
+    return "";
+}
+
+
+function getFallbackDisplayLink(displayObject) {
+    if (displayObject) {
+        for (let i = MAX_LONG_EDGE_MINIMUM; 0 < i; i -= LENGTH_STEP) {
+            if (displayObject[i]) {
+                return displayObject[i];
+            }
+        }
+    }
+
+    return "";
+}
+
+
 function getFullResolutionLink(index) {
-    return imageCatalog[index].image.full || PLACEHOLDER_IMAGE;
+    return imageCatalog[index].image.full || "";
 }
 
 
@@ -160,16 +196,19 @@ function refreshMainImageContainers() {
 
 
 function refreshTextContainers() {
-    let current = imageCatalog[imageIndex];
-    let details = current.details;
-    let caption = `${details.author}  –  ${details.title}`;
+    let details = imageCatalog[imageIndex].details || {};
+
+    let title = details.title || "[without title]";
+    let caption = `${details.author || "[unknown author]"}  –  ${title}`;
 
     $("div.details h1").text(caption);
     $("div.details h1").attr("title", caption);
-    $("div.details p").text(details.description);
-    $("div.details a").text(details.url);
-    $("div.details a").attr("href", details.url);
-    $("div.details a").attr("title", `External link about image: ${details.title}`);
+    $("div.details p").text(details.description || "[without description]");
+    $("div.details a").text(details.url || "[without external link]");
+    $("div.details a").attr("href", details.url || location.href);
+    $("div.details a").attr("title", 
+        details.url ? `External link about image: ${title}` : "[without external link]");
+
     $("div.fullscreen img").attr("alt", caption);
 }
 
