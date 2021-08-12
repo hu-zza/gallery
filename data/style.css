@@ -150,6 +150,16 @@ div.modal.fullscreen {
 }
 
 
+div.modal.fullscreen div.spinner-grid {
+    top: calc(50vh - 40px);
+}
+
+
+div.modal.fullscreen img {
+    z-index: 110;
+}
+
+
 div.modal img {
     max-width: 94vw;
     max-height: 94vh;

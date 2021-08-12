@@ -27,10 +27,16 @@ request.send();
 
 
 function initializeGallery() {
+    addSpinnerToFullscreenModal();
     setImageResolutionAutomatically();
     tryToFetchImageIndex();
     refreshThumbnails();
     updateMainComponents();
+}
+
+
+function addSpinnerToFullscreenModal() {
+    $("div.modal.fullscreen").append(SPINNER_NODE.cloneNode(true));
 }
 
 
