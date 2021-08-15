@@ -326,7 +326,7 @@ function addToImageIndex(value) {
     imageIndex += value % length;
 
     if (imageIndex < 0) {
-        imageIndex += length - 1;
+        imageIndex += length;
     } else if (length <= imageIndex) {
         imageIndex -= length;
     }
