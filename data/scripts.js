@@ -52,10 +52,8 @@ function setImageResolutionAutomatically() {
 
 
 function tryToFetchImageIndex() {
-    let hashIndex = location.href.lastIndexOf("#");
-
-    if (-1 < hashIndex) {
-        setImageIndex(parseInt(location.href.substr(hashIndex + 1)));
+    if (location.hash !== "") {
+        setImageIndex(parseInt(location.hash.substr(1)));
     }
 }
 
@@ -189,8 +187,7 @@ function updateMainComponents() {
 
 
 function updateLocationHref() {
-    let base = location.href.split("#")[0];
-    location.replace(base + "#" + imageIndex);
+    location.replace(`${location.origin}${location.pathname}#${imageIndex}`);
 }
 
 
